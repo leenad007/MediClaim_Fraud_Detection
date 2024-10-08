@@ -5,7 +5,8 @@ __pycache__/
 
 # C extensions
 *.so
-
+/Data
+/scripts/mlruns
 # Distribution / packaging
 .Python
 build/
