@@ -18,9 +18,10 @@ This project uses logistic regression to classify claims as fraudulent or non-fr
 5. Cloud: AWS ECS, AWS S3
 6. Model Tracking: MLflow
 
-## Architecture
+## Architecture 
 
-![**High Level Architecture**](architecture/architecture.jpg)
+![architecture](https://github.com/user-attachments/assets/b68bc015-87e5-4aab-9fd0-3147f0509db2)
+
 
 **User Input:** User interacts with the Streamlit web UI for claim data entry.
 
