@@ -1,22 +1,100 @@
-# Medicare Claim Fraud Prediction
+# Medicare Claim Fraud Detection
 
-Medicare fraud is a significant issue in healthcare, costing billions of dollars each year. Fraudulent claims burden the system, leading to financial losses and undermining trust in medical services. Detecting fraudulent Medicare claims early and accurately is critical for reducing these financial impacts and ensuring that legitimate claims are processed efficiently. The goal is to leverage advanced data analysis techniques, feature engineering, and predictive algorithms to identify suspicious patterns that may indicate fraudulent activity.
+## Overview
+Healthcare fraud creates major financial and operational inefficiencies. In this project, I built an end-to-end fraud detection solution to identify suspicious Medicare claims using data analysis, feature engineering, and machine learning.
 
-**Data:** 
-Medicare claims dataset (https://www.cms.gov/data-research/statistics-trends-and-reports/medicare-claims-synthetic-public-use-files)
+The objective was not only to classify potentially fraudulent claims, but also to design a workflow that could support real-world decision-making through scalable deployment and prediction services.
 
-## Project Overview
+This project uses Medicare claims data and applies a logistic regression model to classify claims as fraudulent or non-fraudulent. The final solution includes exploratory analysis, feature engineering, model training, performance evaluation, and deployment using FastAPI, Streamlit, Docker, and AWS.
 
-This project uses logistic regression to classify claims as fraudulent or non-fraudulent. The model achieves a recall score of 65% and is deployed on AWS Elastic Container Service (ECS) with Docker. The front-end is developed using Streamlit, while FastAPI handles the backend API for prediction services.
+## Business Problem
+Fraudulent healthcare claims increase costs, delay legitimate reimbursements, and reduce operational efficiency. Manual review alone is expensive and difficult to scale.
 
-## Technologies Used
+This project addresses a core business question:
 
-1. Machine Learning: Logistic Regression
-2. Frontend: Streamlit (for web UI)
-3. Backend: FastAPI (for API services)
-4. Containerization: Docker
-5. Cloud: AWS ECS, AWS S3
-6. Model Tracking: MLflow
+**How can we identify high-risk Medicare claims early so investigators can focus their effort where it matters most?**
+
+The goal is to support fraud review teams with a risk-based system that improves detection efficiency while balancing the tradeoff between catching fraud and avoiding too many false positives.
+
+## Dataset
+This project uses the Medicare Claims Synthetic Public Use Files published by CMS.
+
+Data sources used in the project include:
+- Beneficiary data
+- Inpatient claim data
+- Outpatient claim data
+
+These datasets were combined and prepared for fraud risk modeling.
+
+## Project Goals
+- Analyze Medicare claim patterns and identify signals associated with suspicious activity
+- Build a machine learning model to classify fraudulent vs. non-fraudulent claims
+- Engineer features that improve fraud detection performance
+- Deploy the model in a production-style workflow with API and UI access
+- Create an architecture that can support scalable fraud scoring
+
+## End-to-End Workflow
+1. Data extraction and integration  
+   Combined beneficiary, inpatient, and outpatient datasets for modeling
+
+2. Data cleaning and preprocessing  
+   Handled data quality issues, prepared fields for analysis, and standardized input structure
+
+3. Exploratory data analysis  
+   Examined claim-level and provider-level patterns to understand fraud behavior
+
+4. Feature engineering  
+   Created predictive variables from claim and beneficiary information
+
+5. Model training  
+   Trained a logistic regression model for binary classification
+
+6. Evaluation  
+   Assessed performance using fraud-focused metrics, especially recall and capture rate
+
+7. Deployment  
+   Served predictions using FastAPI and Streamlit, containerized with Docker, and deployed on AWS
+
+## Tech Stack
+- **Programming:** Python, SQL
+- **Machine Learning:** Logistic Regression
+- **Experiment Tracking / Model Management:** MLflow
+- **Backend API:** FastAPI
+- **Frontend UI:** Streamlit
+- **Containerization:** Docker
+- **Cloud Services:** AWS ECS, AWS ECR, AWS S3
+- **Analysis Environment:** Jupyter Notebook
+
+## Model Performance
+The current model is a **Logistic Regression** classifier.
+
+Reported performance:
+- **Recall:** 65%
+- **Capture Rate:** 72% in the top 3 percentile
+
+This means the model is useful for prioritizing suspicious claims for investigation and can help focus review effort on the highest-risk segment first.
+
+## Why Recall Matters Here
+In fraud detection, missing a fraudulent claim is expensive. Because of that, recall is an important metric in this use case.
+
+I prioritized identifying as many suspicious claims as possible, while recognizing that fraud systems must also manage false positives to avoid unnecessary friction and review overhead.
+
+## Key Insights
+### 1. Fraud detection is a ranking problem, not just a classification problem
+The model captured 72% of fraudulent cases within the top 3 percentile of scored claims. This shows strong value as a prioritization tool, where investigators can review the highest-risk claims first instead of treating all claims equally.
+
+### 2. Feature engineering materially improves fraud detection
+The project combines multiple Medicare-related data sources and engineered features from claims and beneficiary information. This reflects that fraud is often better detected through behavioral and relational patterns rather than raw fields alone.
+
+### 3. An effective fraud solution needs both analytics and deployment
+This project goes beyond model training by exposing predictions through FastAPI and Streamlit, packaging the solution with Docker, and deploying it through AWS. That makes the work closer to a usable business solution instead of a notebook-only prototype.
+
+## Business Impact
+This solution can support healthcare fraud operations in several ways:
+- Prioritize high-risk claims for manual investigation
+- Reduce review effort by focusing on the most suspicious cases first
+- Improve detection efficiency and reduce financial leakage
+- Create a scalable scoring workflow that can be integrated into operational review pipelines
 
 ## Architecture 
 
